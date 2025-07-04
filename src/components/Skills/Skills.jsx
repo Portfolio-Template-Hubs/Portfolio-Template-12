@@ -1,5 +1,6 @@
 import React from 'react';
 import './Skills.css';
+import { SiHtml5, SiCss3, SiJavascript, SiReact, SiNodedotjs, SiPython, SiMongodb, SiMysql, SiGit, SiDocker } from 'react-icons/si';
 
 const Skills = () => {
   const skills = [
@@ -50,81 +51,16 @@ const Skills = () => {
 
   // SVG icons for each skill
   const skillIcons = {
-    html5: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#E34F26" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M5 3l1.67 19L12 22l5.33-1.5L19 3H5z"></path>
-        <path d="M9 7.5h2v3.5h-2"></path>
-        <path d="M15 7.5h-2v3.5h2"></path>
-        <path d="M10 15l-1-2"></path>
-        <path d="M14 15l1-2"></path>
-      </svg>
-    ),
-    css3: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#1572B6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M5 3l1.67 19L12 22l5.33-1.5L19 3H5z"></path>
-        <path d="M7 7h10l-.7 8-4.3 2-4.3-2L7 7z"></path>
-        <path d="M12 13.5v-3"></path>
-        <path d="M9.5 10.5h5"></path>
-      </svg>
-    ),
-    javascript: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#F7DF1E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-        <path d="M9 17v-8"></path>
-        <path d="M15 17s0-4-3-4"></path>
-        <path d="M12 13h3"></path>
-      </svg>
-    ),
-    react: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#61DAFB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="3"></circle>
-        <path d="M12 9a9.01 9.01 0 0 0 0 6"></path>
-        <path d="M12 3c5 0 9 3 9 9s-4 9-9 9-9-3-9-9 4-9 9-9z"></path>
-      </svg>
-    ),
-    nodejs: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#339933" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2L3 8v8l9 6 9-6V8l-9-6z"></path>
-        <path d="M12 19v-9"></path>
-        <path d="M12 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"></path>
-      </svg>
-    ),
-    python: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#3776AB" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 3c-1.22 0-2.66.7-2.66 2.33V8H14a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H8a1 1 0 0 0-1 1v3.67C7 17.3 8.44 18 9.66 18c1.22 0 2.66-.7 2.66-2.33V14h-3"></path>
-        <path d="M12 3c1.22 0 2.66.7 2.66 2.33V8H10a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1h6a1 1 0 0 1 1 1v3.67c0 1.63-1.44 2.33-2.66 2.33-1.22 0-2.66-.7-2.66-2.33V14h3"></path>
-      </svg>
-    ),
-    mongodb: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#47A248" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M12 2l-7 4v10l7 4 7-4V6l-7-4z"></path>
-        <path d="M12 6v10"></path>
-        <path d="M12 6l7 4"></path>
-        <path d="M5 10l7-4"></path>
-      </svg>
-    ),
-    sql: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#4479A1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <ellipse cx="12" cy="6" rx="8" ry="3"></ellipse>
-        <path d="M4 6v8c0 1.657 3.582 3 8 3s8-1.343 8-3V6"></path>
-        <path d="M4 14v4c0 1.657 3.582 3 8 3s8-1.343 8-3v-4"></path>
-      </svg>
-    ),
-    git: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#F05032" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <circle cx="12" cy="12" r="4"></circle>
-        <line x1="1.05" y1="12" x2="7" y2="12"></line>
-        <line x1="17.01" y1="12" x2="22.96" y2="12"></line>
-        <line x1="12" y1="1.05" x2="12" y2="7"></line>
-        <line x1="12" y1="17.01" x2="12" y2="22.96"></line>
-      </svg>
-    ),
-    docker: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="#2496ED" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M8 12H4V8h4M12 12H8V8h4M16 12h-4V8h4M4 16V4h16v12"></path>
-        <path d="M5 20h14a2 2 0 0 0 2-2v-6H3v6a2 2 0 0 0 2 2z"></path>
-      </svg>
-    )
+    html5: <SiHtml5 color="#E34F26" size="2.5em" className="icon-pulse icon-spin-hover" />,
+    css3: <SiCss3 color="#1572B6" size="2.5em" className="icon-pulse icon-spin-hover" />,
+    javascript: <SiJavascript color="#F7DF1E" size="2.5em" className="icon-pulse icon-spin-hover" />,
+    react: <SiReact color="#61DAFB" size="2.5em" className="icon-pulse icon-spin-hover" />,
+    nodejs: <SiNodedotjs color="#339933" size="2.5em" className="icon-pulse icon-spin-hover" />,
+    python: <SiPython color="#3776AB" size="2.5em" className="icon-pulse icon-spin-hover" />,
+    mongodb: <SiMongodb color="#47A248" size="2.5em" className="icon-pulse icon-spin-hover" />,
+    sql: <SiMysql color="#4479A1" size="2.5em" className="icon-pulse icon-spin-hover" />,
+    git: <SiGit color="#F05032" size="2.5em" className="icon-pulse icon-spin-hover" />,
+    docker: <SiDocker color="#2496ED" size="2.5em" className="icon-pulse icon-spin-hover" />
   };
 
   return (
@@ -141,8 +77,12 @@ const Skills = () => {
         </div>
 
         <div className="skills-all-categories">
-          {categories.map(category => (
-            <div key={category} className="skills-category-section">
+          {categories.map((category, index) => (
+            <div 
+              key={category} 
+              className="skills-category-section" 
+              style={{ animationDelay: `${index * 0.2}s` }}
+            >
               <div className="skills-category-header">
                 <div className="skills-category-icon">
                   {categoryIcons[category]}
@@ -162,7 +102,14 @@ const Skills = () => {
 
         <div className="skills-grid-container">
           {skills.map((skill, index) => (
-            <div key={index} className="skills-grid-item" style={{ borderColor: skill.color }}>              
+            <div 
+              key={index} 
+              className="skills-grid-item" 
+              style={{ 
+                borderColor: skill.color,
+                animationDelay: `${index * 0.1}s`
+              }}
+            >              
               <div className="skills-grid-item-header" style={{ background: `linear-gradient(145deg, ${skill.color}11, ${skill.color}22)` }}>
                 <div className="skills-grid-item-icon" style={{ color: skill.color }}>
                   {skillIcons[skill.icon]}
@@ -182,7 +129,7 @@ const Skills = () => {
         </div>
 
         <div className="skills-stats-container">
-          <div className="skills-stat-card">
+          <div className="skills-stat-card" style={{ '--card-index': 0 }}>
             <div className="skills-stat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
@@ -193,7 +140,7 @@ const Skills = () => {
               <div className="skills-stat-label">Years Experience</div>
             </div>
           </div>
-          <div className="skills-stat-card">
+          <div className="skills-stat-card" style={{ '--card-index': 1 }}>
             <div className="skills-stat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
@@ -204,7 +151,7 @@ const Skills = () => {
               <div className="skills-stat-label">Projects Completed</div>
             </div>
           </div>
-          <div className="skills-stat-card">
+          <div className="skills-stat-card" style={{ '--card-index': 2 }}>
             <div className="skills-stat-icon">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>

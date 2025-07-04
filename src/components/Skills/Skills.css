@@ -28,6 +28,7 @@
   position: relative;
   z-index: 1;
   margin-bottom: var(--spacing-2xl);
+  animation: fadeInUp 0.8s ease-out forwards;
 }
 
 .skills-title-wrapper {
@@ -60,6 +61,19 @@
   margin: 0.5rem auto;
   border-radius: var(--radius-full);
   box-shadow: 0 0 15px rgba(243, 156, 18, 0.5);
+  position: relative;
+  overflow: hidden;
+}
+
+.skills-title-decoration::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+  animation: skillShimmer 2s infinite 1s;
 }
 
 .skills-section-subtitle {
@@ -92,6 +106,8 @@
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
   border: 1px solid #222;
   transition: all var(--transition-normal);
+  animation: fadeInUp 0.5s ease-out forwards;
+  opacity: 0;
 }
 
 .skills-category-section:hover {
@@ -166,6 +182,9 @@
   border: 1px solid #222;
   position: relative;
   min-height: 220px;
+  animation: circleGrow 0.6s ease-out forwards;
+  animation-fill-mode: both;
+  opacity: 0;
 }
 
 .skills-grid-item:hover {
@@ -188,12 +207,14 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  animation: rotateIn 0.5s ease-out 0.3s forwards;
+  opacity: 0;
 }
 
 .skills-grid-item-icon svg {
   width: 2.5rem;
   height: 2.5rem;
-  filter: drop-shadow(0 0 5px currentColor);
+  /* filter: drop-shadow(0 0 5px currentColor); */
 }
 
 .skills-grid-item-name {
@@ -221,8 +242,14 @@
   align-items: center;
   position: relative;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  animation: spin 1.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
 }
 
+.skills-grid-item:hover .skills-circular-progress {
+  transform: scale(1.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
 .skills-circular-inner {
   width: 65px;
   height: 65px;
@@ -249,6 +276,7 @@
   right: 0;
   bottom: 0;
   border-radius: var(--radius-lg);
+  background: none;
   pointer-events: none;
   opacity: 0;
   transition: opacity var(--transition-normal);
@@ -256,7 +284,8 @@
 }
 
 .skills-grid-item:hover::after {
-  opacity: 0.5;
+  opacity: 0;
+  animation: none;
 }
 
 /* Skills Stats */
@@ -283,6 +312,8 @@
   border: 1px solid #1a1a1a;
   position: relative;
   overflow: hidden;
+  animation: float 6s ease-in-out infinite;
+  animation-delay: calc(var(--card-index, 0) * 0.5s);
 }
 
 .skills-stat-card:hover {
@@ -358,11 +389,90 @@
 
 @keyframes pulseGlow {
   0%, 100% {
-    opacity: 0.3;
+    opacity: 0.15;
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.3;
   }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes rotateIn {
+  from {
+    transform: rotate(-10deg) scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: rotate(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes circleGrow {
+  0% {
+    clip-path: circle(0% at 50% 50%);
+    opacity: 0.7;
+  }
+  100% {
+    clip-path: circle(100% at 50% 50%);
+    opacity: 1;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Icon Animations */
+@keyframes iconPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.12); }
+}
+
+@keyframes iconSpin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.icon-pulse {
+  animation: iconPulse 2.2s infinite ease-in-out;
+}
+
+.icon-spin-hover:hover {
+  animation: iconSpin 1s linear infinite;
 }
 
 /* Responsive Styles */
