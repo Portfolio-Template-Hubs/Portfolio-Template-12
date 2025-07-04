@@ -1,0 +1,163 @@
+/* ========================================
+   AURORA NAVIGATION - UNIQUE STYLING
+   ======================================== */
+
+/* Core navigation container */
+.aurora-nav {
+  position: relative;
+  z-index: 10;
+}
+
+/* Main navigation list */
+.aurora-nav-list {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Individual navigation items */
+.aurora-nav-item {
+  position: relative;
+}
+
+/* Navigation links */
+.aurora-nav-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: 12px;
+  color: var(--aurora-nav-text);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 15px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.aurora-nav-link:hover {
+  color: var(--aurora-nav-text-active);
+  background: var(--aurora-nav-bg-hover);
+}
+
+/* Active navigation link */
+.aurora-nav-link-active {
+  color: var(--aurora-nav-text-active);
+}
+
+/* Indicator for active link */
+.aurora-nav-indicator {
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 12px;
+  height: 2px;
+  background: var(--aurora-nav-indicator);
+  border-radius: 1px;
+  transform: translateX(-50%) scaleX(0);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aurora-nav-link-active .aurora-nav-indicator {
+  transform: translateX(-50%) scaleX(1);
+  opacity: 1;
+}
+
+/* Navigation link icon */
+.aurora-nav-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--aurora-nav-text-secondary);
+}
+
+.aurora-nav-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.aurora-nav-link-active .aurora-nav-icon {
+  color: var(--aurora-nav-text-active);
+}
+
+.aurora-nav-link:hover .aurora-nav-icon {
+  transform: translateY(-1px);
+  color: var(--aurora-nav-text-active);
+}
+
+/* Navigation link text */
+.aurora-nav-text {
+  position: relative;
+}
+
+/* Mobile Responsive Navigation */
+@media (max-width: 768px) {
+  .aurora-nav {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: var(--aurora-header-bg-scrolled);
+    padding: 24px 0;
+    box-shadow: var(--aurora-header-shadow);
+    border-top: 1px solid var(--aurora-action-border);
+    transform: translateY(-100%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 5;
+  }
+  
+  .aurora-nav-open {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .aurora-nav-list {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+  
+  .aurora-nav-item {
+    width: 100%;
+  }
+  
+  .aurora-nav-link {
+    justify-content: center;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    width: 100%;
+  }
+  
+  .aurora-nav-indicator {
+    display: none;
+  }
+}
+
+/* Accessibility focus styles */
+.aurora-nav-link:focus-visible {
+  outline: 2px solid var(--aurora-nav-text-active);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-nav,
+  .aurora-nav-link,
+  .aurora-nav-indicator,
+  .aurora-nav-icon {
+    transition: none;
+  }
+}

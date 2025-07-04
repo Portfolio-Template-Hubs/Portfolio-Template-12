@@ -1,0 +1,545 @@
+/* ========================================
+   AURORA HEADER - MODERN PORTFOLIO DESIGN
+   ======================================== */
+
+/* CSS Custom Properties for Themes */
+:root {
+  /* Dark Theme (Default - Pure Black Focus) */
+  --aurora-header-bg: rgba(0, 0, 0, 0.85);
+  --aurora-header-bg-scrolled: rgba(0, 0, 0, 0.95);
+  --aurora-header-border: linear-gradient(90deg, #6366f1, #a855f7, #ec4899, #f59e0b, #10b981);
+  --aurora-header-backdrop: rgba(0, 0, 0, 0.3);
+  
+  /* Logo Colors */
+  --aurora-logo-primary: #ffffff;
+  --aurora-logo-secondary: #a1a1aa;
+  --aurora-logo-accent: #6366f1;
+  --aurora-logo-ring1: #6366f1;
+  --aurora-logo-ring2: #a855f7;
+  
+  /* Navigation Colors */
+  --aurora-nav-text: #ffffff;
+  --aurora-nav-text-secondary: #a1a1aa;
+  --aurora-nav-text-active: #6366f1;
+  --aurora-nav-bg-hover: rgba(255, 255, 255, 0.1);
+  --aurora-nav-indicator: #6366f1;
+  
+  /* Action Button Colors */
+  --aurora-action-bg: rgba(255, 255, 255, 0.1);
+  --aurora-action-bg-hover: rgba(255, 255, 255, 0.2);
+  --aurora-action-border: rgba(255, 255, 255, 0.2);
+  --aurora-action-text: #ffffff;
+  
+  /* CTA Button Colors */
+  --aurora-cta-bg: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+  --aurora-cta-bg-hover: linear-gradient(135deg, #5b56f0 0%, #8049f5 50%, #9d49f6 100%);
+  --aurora-cta-text: #ffffff;
+  --aurora-cta-shadow: 0 8px 32px rgba(99, 102, 241, 0.3);
+  
+  /* Theme Toggle Colors */
+  --aurora-theme-bg: rgba(255, 255, 255, 0.1);
+  --aurora-theme-bg-hover: rgba(255, 255, 255, 0.2);
+  --aurora-theme-sun: #fbbf24;
+  --aurora-theme-moon: #93c5fd;
+  
+  /* Mobile Overlay */
+  --aurora-overlay-bg: rgba(0, 0, 0, 0.8);
+  
+  /* Shadows */
+  --aurora-header-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --aurora-logo-shadow: 0 4px 16px rgba(99, 102, 241, 0.2);
+}
+
+/* Light Theme */
+[data-theme="light"] {
+  --aurora-header-bg: rgba(255, 255, 255, 0.85);
+  --aurora-header-bg-scrolled: rgba(255, 255, 255, 0.95);
+  --aurora-header-backdrop: rgba(255, 255, 255, 0.3);
+  
+  /* Logo Colors */
+  --aurora-logo-primary: #000000;
+  --aurora-logo-secondary: #71717a;
+  --aurora-logo-accent: #6366f1;
+  
+  /* Navigation Colors */
+  --aurora-nav-text: #000000;
+  --aurora-nav-text-secondary: #71717a;
+  --aurora-nav-bg-hover: rgba(0, 0, 0, 0.05);
+  
+  /* Action Button Colors */
+  --aurora-action-bg: rgba(0, 0, 0, 0.05);
+  --aurora-action-bg-hover: rgba(0, 0, 0, 0.1);
+  --aurora-action-border: rgba(0, 0, 0, 0.1);
+  --aurora-action-text: #000000;
+  
+  /* Mobile Overlay */
+  --aurora-overlay-bg: rgba(0, 0, 0, 0.5);
+  
+  /* Shadows */
+  --aurora-header-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+/* ========================================
+   HEADER MAIN STRUCTURE
+   ======================================== */
+
+.aurora-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  height: 80px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid transparent;
+  padding-top: 10px;
+}
+
+.aurora-header-backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--aurora-header-bg);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aurora-header-border {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: var(--aurora-header-border);
+  opacity: 0;
+  transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aurora-header-scrolled {
+  height: 70px;
+  box-shadow: var(--aurora-header-shadow);
+}
+
+.aurora-header-scrolled .aurora-header-backdrop {
+  background: var(--aurora-header-bg-scrolled);
+}
+
+.aurora-header-scrolled .aurora-header-border {
+  opacity: 1;
+}
+
+.aurora-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+/* ========================================
+   LOGO SECTION
+   ======================================== */
+
+.aurora-logo-section {
+  display: flex;
+  align-items: center;
+  z-index: 10;
+}
+
+.aurora-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 8px;
+  border-radius: 12px;
+}
+
+.aurora-logo:hover {
+  transform: translateY(-1px);
+}
+
+.aurora-logo-icon {
+  position: relative;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.aurora-logo-ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 2px solid;
+  opacity: 0.3;
+  animation: aurora-logo-pulse 3s ease-in-out infinite;
+}
+
+.aurora-logo-ring-1 {
+  border-color: var(--aurora-logo-ring1);
+  animation-delay: 0s;
+}
+
+.aurora-logo-ring-2 {
+  border-color: var(--aurora-logo-ring2);
+  animation-delay: 1.5s;
+  transform: scale(0.8);
+}
+
+.aurora-logo-symbol {
+  position: relative;
+  z-index: 2;
+  width: 24px;
+  height: 24px;
+  color: var(--aurora-logo-accent);
+  filter: drop-shadow(var(--aurora-logo-shadow));
+}
+
+.aurora-logo-text {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.aurora-logo-name {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--aurora-logo-primary);
+  letter-spacing: -0.02em;
+}
+
+.aurora-logo-title {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--aurora-logo-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-top: 2px;
+}
+
+@keyframes aurora-logo-pulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.1) rotate(180deg);
+    opacity: 0.6;
+  }
+}
+
+/* ========================================
+   ACTION BUTTONS SECTION
+   ======================================== */
+
+.aurora-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 10;
+}
+
+.aurora-action-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--aurora-action-bg);
+  border: 1px solid var(--aurora-action-border);
+  color: var(--aurora-action-text);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.aurora-action-btn:hover {
+  background: var(--aurora-action-bg-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ========================================
+   THEME TOGGLE
+   ======================================== */
+
+.aurora-theme-toggle {
+  overflow: hidden;
+}
+
+.aurora-theme-icon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aurora-theme-icon-sun {
+  color: var(--aurora-theme-sun);
+  transform: translateY(0) rotate(0deg);
+  opacity: 1;
+}
+
+.aurora-theme-icon-moon {
+  color: var(--aurora-theme-moon);
+  transform: translateY(30px) rotate(-180deg);
+  opacity: 0;
+}
+
+[data-theme="light"] .aurora-theme-icon-sun {
+  transform: translateY(-30px) rotate(180deg);
+  opacity: 0;
+}
+
+[data-theme="light"] .aurora-theme-icon-moon {
+  transform: translateY(0) rotate(0deg);
+  opacity: 1;
+}
+
+/* ========================================
+   CTA BUTTON
+   ======================================== */
+
+.aurora-cta-btn {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 32px;
+  height: 44px;
+  border-radius: 12px;
+  background: var(--aurora-cta-bg);
+  color: var(--aurora-cta-text);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+  box-shadow: var(--aurora-cta-shadow);
+  min-width: 160px;
+}
+
+.aurora-cta-btn:hover {
+  background: var(--aurora-cta-bg-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 40px rgba(99, 102, 241, 0.4);
+}
+
+.aurora-cta-text {
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.aurora-cta-icon {
+  position: relative;
+  z-index: 2;
+  width: 16px;
+  height: 16px;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aurora-cta-btn:hover .aurora-cta-icon {
+  transform: translate(2px, -2px);
+}
+
+.aurora-cta-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aurora-cta-btn:hover .aurora-cta-bg {
+  opacity: 1;
+}
+
+/* ========================================
+   MOBILE MENU TOGGLE
+   ======================================== */
+
+.aurora-menu-toggle {
+  display: none;
+  z-index: 11;
+}
+
+.aurora-hamburger {
+  position: relative;
+  width: 20px;
+  height: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.aurora-hamburger-line {
+  width: 100%;
+  height: 2px;
+  background: var(--aurora-action-text);
+  border-radius: 1px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center;
+}
+
+.aurora-menu-toggle-active .aurora-hamburger-line-1 {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.aurora-menu-toggle-active .aurora-hamburger-line-2 {
+  opacity: 0;
+  transform: scaleX(0);
+}
+
+.aurora-menu-toggle-active .aurora-hamburger-line-3 {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ========================================
+   MOBILE OVERLAY
+   ======================================== */
+
+.aurora-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--aurora-overlay-bg);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 5;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+.aurora-mobile-overlay-active {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========================================
+   RESPONSIVE DESIGN
+   ======================================== */
+
+@media (max-width: 1024px) {
+  .aurora-cta-btn {
+    padding: 0 16px;
+  }
+  
+  .aurora-cta-text {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 768px) {
+  .aurora-header {
+    height: 70px;
+  }
+  
+  .aurora-header-scrolled {
+    height: 65px;
+  }
+  
+  .aurora-header-content {
+    padding: 0 1rem;
+  }
+  
+  .aurora-menu-toggle {
+    display: flex;
+  }
+  
+  .aurora-cta-btn {
+    display: none;
+  }
+  
+  .aurora-logo-name {
+    font-size: 18px;
+  }
+  
+  .aurora-logo-title {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .aurora-header {
+    height: 65px;
+  }
+  
+  .aurora-header-scrolled {
+    height: 60px;
+  }
+  
+  .aurora-header-content {
+    padding: 0 0.75rem;
+  }
+  
+  .aurora-header-actions {
+    gap: 6px;
+  }
+  
+  .aurora-action-btn {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .aurora-logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .aurora-logo-symbol {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY & FOCUS STATES
+   ======================================== */
+
+.aurora-action-btn:focus-visible,
+.aurora-logo:focus-visible {
+  outline: 2px solid var(--aurora-nav-text-active);
+  outline-offset: 2px;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .aurora-header,
+  .aurora-header-backdrop,
+  .aurora-header-border,
+  .aurora-logo,
+  .aurora-action-btn,
+  .aurora-theme-icon,
+  .aurora-hamburger-line,
+  .aurora-mobile-overlay {
+    transition: none;
+  }
+  
+  .aurora-logo-ring {
+    animation: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .aurora-header-border {
+    opacity: 1;
+  }
+  
+  .aurora-action-btn {
+    border-width: 2px;
+  }
+}
