@@ -1,9 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './Projects.css';
 import { SiReact, SiNodedotjs, SiMongodb, SiJavascript, SiFirebase, SiStripe, SiExpress, SiPostgresql, SiSocketdotio, SiCss3, SiVite, SiMarkdown, SiHtml5, SiGithub } from 'react-icons/si';
-import { FiEye } from 'react-icons/fi';
+import { FiEye, FiStar } from 'react-icons/fi';
 
 const Projects = () => {
+  const [visibleCards, setVisibleCards] = useState(new Set());
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const sectionRef = useRef(null);
+  const cardRefs = useRef([]);
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cardId = entry.target.dataset.cardId;
+            if (cardId) {
+              setVisibleCards(prev => new Set([...prev, parseInt(cardId)]));
+            }
+          }
+        });
+      },
+      { threshold: 0.1, rootMargin: '50px' }
+    );
+
+    cardRefs.current.forEach((ref) => {
+      if (ref) observer.observe(ref);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Mouse tracking for interactive effects
+  useEffect(() => {
+    const handleMouseMove = (e) => {
+      setMousePosition({ x: e.clientX, y: e.clientY });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   const projects = [
     {
       id: 1,
@@ -79,45 +117,107 @@ const Projects = () => {
   };
 
   return (
-    <section id="projects" className="projects-section">
+    <section id="projects" className="projects-section" ref={sectionRef}>
       <div className="container">
-        <div className="section-header">
-          <h2 className="section-title">My Projects</h2>
-          <p className="section-subtitle">Here are some of my recent works</p>
+        {/* Floating Elements */}
+        <div className="projects-floating-elements">
+          <div className="projects-floating-element projects-floating-element-1"></div>
+          <div className="projects-floating-element projects-floating-element-2"></div>
+          <div className="projects-floating-element projects-floating-element-3"></div>
+        </div>
+
+        {/* Interactive Cursor */}
+        <div 
+          className="projects-cursor-glow"
+          style={{
+            left: mousePosition.x,
+            top: mousePosition.y,
+            transform: 'translate(-50%, -50%)'
+          }}
+        ></div>
+
+        <div className="projects-section-header">
+          <div className="projects-section-icon">
+            <FiStar className="projects-star-icon" />
+          </div>
+          <h2 className="projects-section-title">My Projects</h2>
+          <p className="projects-section-subtitle">Here are some of my recent works that showcase my skills and creativity</p>
+          <div className="projects-title-decoration">
+            <div className="projects-decoration-line"></div>
+            <div className="projects-decoration-dot"></div>
+            <div className="projects-decoration-line"></div>
+          </div>
         </div>
 
         <div className="projects-grid">
-          {projects.map(project => (
-            <div key={project.id} className="project-card">
-              <div className="project-image">
+          {projects.map((project, index) => (
+            <div 
+              key={project.id} 
+              ref={(el) => (cardRefs.current[index] = el)}
+              data-card-id={project.id}
+              className={`projects-project-card ${visibleCards.has(project.id) ? 'projects-card-visible' : ''}`}
+              style={{
+                animationDelay: `${index * 0.1}s`
+              }}
+            >
+              {/* Card Number */}
+              <div className="projects-card-number">{String(project.id).padStart(2, '0')}</div>
+              
+              {/* Particle Effect */}
+              <div className="projects-particle-container">
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} className={`projects-particle projects-particle-${i + 1}`}></div>
+                ))}
+              </div>
+
+              <div className="projects-project-image">
                 <img 
                   src={project.imageUrl} 
                   alt={project.title}
-                  className="project-image-content"
+                  className="projects-project-image-content"
                   loading="lazy"
                 />
-                <div className="project-overlay">
-                  <div className="project-links">
-                    <a href={project.githubLink} className="project-link">
-                      <SiGithub size="1.2em" style={{marginRight: '0.5rem'}} />
-                      <span>GitHub</span>
+                <div className="projects-image-overlay"></div>
+                <div className="projects-project-overlay">
+                  <div className="projects-project-links">
+                    <a href={project.githubLink} className="projects-project-link projects-github-link">
+                      <SiGithub size="1.2em" />
+                      <span>Code</span>
+                      <div className="projects-link-ripple"></div>
                     </a>
-                    <a href={project.liveLink} className="project-link">
-                      <FiEye size="1.2em" style={{marginRight: '0.5rem'}} />
-                      <span>Live Demo</span>
+                    <a href={project.liveLink} className="projects-project-link projects-demo-link">
+                      <FiEye size="1.2em" />
+                      <span>Demo</span>
+                      <div className="projects-link-ripple"></div>
                     </a>
                   </div>
                 </div>
               </div>
               
-              <div className="project-content">
-                <h3 className="project-title">{project.title}</h3>
-                <p className="project-description">{project.description}</p>
+              <div className="projects-project-content">
+                <div className="projects-content-header">
+                  <h3 className="projects-project-title">{project.title}</h3>
+                  <div className="projects-project-status">
+                    <span className="projects-status-dot"></span>
+                    <span className="projects-status-text">Active</span>
+                  </div>
+                </div>
+                <p className="projects-project-description">{project.description}</p>
                 
-                <div className="project-technologies">
-                  {project.technologies.map((tech, index) => (
-                    <span key={index} className="tech-tag">
-                      {techIcons[tech] && <span style={{marginRight: '0.4rem', display: 'inline-flex', alignItems: 'center'}}>{techIcons[tech]}</span>}
+                <div className="projects-project-technologies">
+                  {project.technologies.map((tech, techIndex) => (
+                    <span 
+                      key={techIndex} 
+                      className="projects-tech-tag"
+                      style={{
+                        animationDelay: `${(index * 0.1) + (techIndex * 0.05)}s`
+                      }}
+                    >
+                      {techIcons[tech] && (
+                        <span className="projects-tech-icon">
+                          {techIcons[tech]}
+                        </span>
+                      )}
                       {tech}
                     </span>
                   ))}
@@ -130,7 +230,7 @@ const Projects = () => {
         <div className="projects-cta">
           <h3>Want to see more?</h3>
           <p>Check out my GitHub for more projects and contributions</p>
-          <a href="#" className="cta-button">View GitHub Profile</a>
+          <a href="#" className="projects-cta-button">View GitHub Profile</a>
         </div>
       </div>
     </section>
