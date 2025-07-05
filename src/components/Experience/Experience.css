@@ -1,251 +1,951 @@
-.experience {
-  padding: 80px 0;
-  background: white;
-}
-
-.experience-timeline {
+/* Experience Section - Black Theme with Advanced Animations */
+.exp-section {
+  padding: 120px 0;
+  background: #000000;
   position: relative;
-  max-width: 1000px;
-  margin: 0 auto 4rem;
-  padding: 2rem 0;
+  overflow: hidden;
+  min-height: 100vh;
 }
 
-.experience-timeline::before {
+/* Container */
+.exp-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+/* Background Elements */
+.exp-bg-elements {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.exp-bg-orb {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.4;
+  filter: blur(40px);
+  animation: expFloatOrb 20s ease-in-out infinite;
+}
+
+.exp-bg-orb-1 {
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.3) 0%, transparent 70%);
+  top: 10%;
+  left: 5%;
+  animation-delay: 0s;
+}
+
+.exp-bg-orb-2 {
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.25) 0%, transparent 70%);
+  top: 50%;
+  right: 10%;
+  animation-delay: 5s;
+}
+
+.exp-bg-orb-3 {
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.2) 0%, transparent 70%);
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 10s;
+}
+
+@keyframes expFloatOrb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(30px, -40px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 30px) scale(0.9);
+  }
+  75% {
+    transform: translate(40px, 20px) scale(1.05);
+  }
+}
+
+/* Section Header */
+.exp-header {
+  text-align: center;
+  margin-bottom: 5rem;
+  position: relative;
+  z-index: 2;
+  opacity: 0;
+  animation: expFadeInUp 1s ease-out 0.3s forwards;
+}
+
+@keyframes expFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.exp-header-icon {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.exp-rocket-icon {
+  font-size: 4rem;
+  color: #9333ea;
+  filter: drop-shadow(0 0 30px rgba(147, 51, 234, 0.8));
+  animation: expRocketFloat 3s ease-in-out infinite;
+}
+
+@keyframes expRocketFloat {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(5deg);
+  }
+}
+
+.exp-title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #ffffff 0%, #9333ea 30%, #22c55e 70%, #f97316 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  background-size: 300% 100%;
+  animation: expTitleGradient 4s ease-in-out infinite;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+}
+
+@keyframes expTitleGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.exp-subtitle {
+  font-size: 1.4rem;
+  color: #a1a1aa;
+  margin-bottom: 2.5rem;
+  line-height: 1.7;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.exp-title-decoration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  opacity: 0;
+  animation: expFadeIn 1s ease-out 1s forwards;
+}
+
+@keyframes expFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.exp-deco-line {
+  width: 80px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #9333ea, transparent);
+  border-radius: 2px;
+  animation: expLineGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes expLineGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 25px rgba(147, 51, 234, 0.9);
+  }
+}
+
+.exp-deco-diamond {
+  width: 12px;
+  height: 12px;
+  background: #9333ea;
+  transform: rotate(45deg);
+  border-radius: 2px;
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.8);
+  animation: expDiamondSpin 4s linear infinite;
+}
+
+@keyframes expDiamondSpin {
+  0% {
+    transform: rotate(45deg) scale(1);
+  }
+  50% {
+    transform: rotate(225deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(405deg) scale(1);
+  }
+}
+
+/* Timeline */
+.exp-timeline {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto 6rem;
+  padding: 3rem 0;
+}
+
+.exp-timeline::before {
   content: '';
   position: absolute;
   left: 50%;
   top: 0;
   bottom: 0;
-  width: 3px;
-  background: linear-gradient(180deg, #007bff 0%, #764ba2 100%);
+  width: 4px;
+  background: linear-gradient(
+    180deg, 
+    rgba(147, 51, 234, 0.8) 0%, 
+    rgba(34, 197, 94, 0.8) 50%, 
+    rgba(249, 115, 22, 0.8) 100%
+  );
   transform: translateX(-50%);
+  border-radius: 2px;
+  box-shadow: 0 0 20px rgba(147, 51, 234, 0.5);
 }
 
-.timeline-item {
+/* Timeline Items */
+.exp-timeline-item {
   position: relative;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
   width: 50%;
+  opacity: 0;
+  transform: translateY(50px);
+  animation: expTimelineSlideIn 0.8s ease-out forwards;
 }
 
-.timeline-item.left {
+@keyframes expTimelineSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.exp-timeline-item.exp-item-visible {
+  animation: expTimelineSlideIn 0.8s ease-out forwards;
+}
+
+.exp-timeline-left {
   left: 0;
-  padding-right: 3rem;
+  padding-right: 4rem;
 }
 
-.timeline-item.right {
+.exp-timeline-right {
   left: 50%;
-  padding-left: 3rem;
+  padding-left: 4rem;
 }
 
-.timeline-content {
+.exp-timeline-content {
   position: relative;
 }
 
-.experience-card {
-  background: #f8f9fa;
+/* Experience Cards */
+.exp-card {
+  /* background: linear-gradient(145deg, #0a0a0a 0%, #1a1a1a 100%); */
+  border: 1px solid var(--exp-card-color, rgba(147, 51, 234, 0.2));
+  border-radius: 24px;
   padding: 2rem;
-  border-radius: 15px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
   position: relative;
+  transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  backdrop-filter: blur(10px);
+  overflow: hidden;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  cursor: pointer;
 }
 
-.experience-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-}
-
-.timeline-item.left .experience-card::before {
+.exp-card::before {
   content: '';
   position: absolute;
-  top: 20px;
-  right: -15px;
-  width: 0;
-  height: 0;
-  border-left: 15px solid #f8f9fa;
-  border-top: 15px solid transparent;
-  border-bottom: 15px solid transparent;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: #1a1a1a;
+  border-radius: 26px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
-.timeline-item.right .experience-card::before {
+.exp-card:hover::before {
+  opacity: 0.8;
+}
+
+.exp-card:hover {
+  transform: translateY(-15px) scale(1.02);
+}
+
+.exp-card-active {
+  transform: translateY(-10px) scale(1.01);
+}
+
+/* Expandable Content */
+.exp-card-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+  opacity: 0;
+}
+
+.exp-details-expanded {
+  max-height: 1000px;
+  opacity: 1;
+  margin-top: 1.5rem;
+}
+
+/* Expand/Collapse Indicator */
+.exp-expand-indicator {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.exp-expand-icon {
+  color: #a1a1aa;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  transform: rotate(0deg);
+}
+
+.exp-expand-icon.exp-expanded {
+  transform: rotate(180deg);
+  color: var(--exp-card-color, #9333ea);
+}
+
+.exp-card-expanded {
+  padding: 2.5rem;
+}
+
+/* Arrow Pointers */
+.exp-timeline-left .exp-card::after {
   content: '';
   position: absolute;
-  top: 20px;
-  left: -15px;
+  top: 30px;
+  right: -20px;
   width: 0;
   height: 0;
-  border-right: 15px solid #f8f9fa;
+  border-left: 20px solid rgba(26, 26, 26, 0.95);
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
+  filter: drop-shadow(2px 0 4px rgba(0, 0, 0, 0.3));
 }
 
-.timeline-marker {
+.exp-timeline-right .exp-card::after {
+  content: '';
   position: absolute;
-  top: 20px;
-  width: 20px;
-  height: 20px;
-  background: #007bff;
-  border: 4px solid white;
-  border-radius: 50%;
-  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+  top: 30px;
+  left: -20px;
+  width: 0;
+  height: 0;
+  border-right: 20px solid rgba(26, 26, 26, 0.95);
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  filter: drop-shadow(-2px 0 4px rgba(0, 0, 0, 0.3));
 }
 
-.timeline-item.left .timeline-marker {
-  right: -13px;
-}
-
-.timeline-item.right .timeline-marker {
-  left: -13px;
-}
-
-.card-header {
-  margin-bottom: 1.5rem;
-}
-
-.position {
-  font-size: 1.4rem;
-  color: #333;
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-}
-
-.company-period {
+/* Card Header */
+.exp-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(147, 51, 234, 0.2);
 }
 
-.company {
-  color: #007bff;
-  font-weight: 600;
-  font-size: 1.1rem;
-}
-
-.period {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 0.3rem 1rem;
+.exp-card-status {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.5rem 1rem;
+  background: rgba(147, 51, 234, 0.1);
+  border: 1px solid rgba(147, 51, 234, 0.3);
   border-radius: 20px;
+  backdrop-filter: blur(10px);
+}
+
+.exp-status-indicator {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  animation: expStatusPulse 2s ease-in-out infinite;
+}
+
+.exp-status-current {
+  background: #22c55e;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+}
+
+.exp-status-completed {
+  background: #6b7280;
+  box-shadow: 0 0 10px rgba(107, 114, 128, 0.5);
+}
+
+@keyframes expStatusPulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.3);
+  }
+}
+
+.exp-status-text {
+  color: #9333ea;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.exp-card-type {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #a1a1aa;
   font-size: 0.9rem;
   font-weight: 600;
 }
 
-.description {
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 1.5rem;
-  font-size: 1rem;
+.exp-type-icon {
+  color: #f97316;
+  font-size: 1.1rem;
 }
 
-.achievements h4 {
-  color: #333;
+/* Timeline Marker */
+.exp-timeline-marker {
+  position: absolute;
+  top: 30px;
+  left: calc(50% - 10px);
+  width: 20px;
+  height: 20px;
+  background: #ffffff;
+  border: 4px solid #9333ea;
+  border-radius: 50%;
+  z-index: 3;
+  box-shadow: 0 0 15px rgba(147, 51, 234, 0.5);
+}
+
+.exp-marker-inner {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #9333ea 0%, #22c55e 100%);
+  border-radius: 50%;
+}
+
+.exp-marker-pulse {
+  position: absolute;
+  top: -15px;
+  left: -15px;
+  width: 50px;
+  height: 50px;
+  background: rgba(147, 51, 234, 0.2);
+  border-radius: 50%;
+  z-index: -1;
+  animation: expPulse 2s ease-out infinite;
+}
+
+@keyframes expPulse {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.1;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.8;
+  }
+}
+
+.exp-timeline-left .exp-timeline-marker {
+  right: -30px;
+  left: auto;
+}
+
+.exp-timeline-right .exp-timeline-marker {
+  left: -30px;
+  right: auto;
+}
+
+/* Meta Info */
+.exp-card-main {
+  margin-bottom: 1.8rem;
+}
+
+.exp-position {
+  font-size: 1.8rem;
+  color: #ffffff;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.exp-company-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.exp-company {
   font-size: 1.1rem;
-  margin-bottom: 0.8rem;
+  color: #93c5fd;
+  font-weight: 700;
+}
+
+.exp-meta-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.exp-meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #a1a1aa;
+  font-size: 0.85rem;
   font-weight: 600;
 }
 
-.achievements ul {
+.exp-meta-icon {
+  font-size: 1rem;
+  color: #9333ea;
+}
+
+/* Description */
+.exp-description {
+  color: #c4c4cc;
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  opacity: 0.9;
+}
+
+/* Technologies */
+.exp-technologies {
+  margin-bottom: 2rem;
+}
+
+.exp-tech-title {
+  font-size: 1.1rem;
+  color: #9333ea;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.exp-tech-icon {
+  font-size: 1.3rem;
+}
+
+.exp-tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.exp-tech-tag {
+  background: linear-gradient(135deg, rgba(147, 51, 234, 0.2) 0%, rgba(147, 51, 234, 0.1) 100%);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(147, 51, 234, 0.4);
+  box-shadow: 0 8px 20px rgba(147, 51, 234, 0.1);
+  transition: all 0.3s ease;
+  animation: expTechTagSlideIn 0.5s ease-out forwards;
+  backdrop-filter: blur(6px);
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes expTechTagSlideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.exp-tech-tag:hover {
+  /* background: var(--exp-card-color, rgba(147, 51, 234, 0.25)); */
+  color: #ffffff;
+  transform: translateY(-4px);
+}
+
+/* Achievements */
+.exp-achievements {
+  margin-bottom: 2rem;
+}
+
+.exp-achievements-title {
+  font-size: 1.1rem;
+  color: #9333ea;
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.exp-achievements-icon {
+  font-size: 1.3rem;
+}
+
+.exp-achievements-list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.achievements li {
-  position: relative;
-  padding-left: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: #555;
-  line-height: 1.4;
+.exp-achievement-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 0.8rem;
+  color: #c4c4cc;
+  line-height: 1.6;
 }
 
-.achievements li::before {
-  content: '✓';
-  position: absolute;
-  left: 0;
-  color: #28a745;
-  font-weight: bold;
+.exp-achievement-bullet {
+  width: 6px;
+  height: 6px;
+  background: #9333ea;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 0.8rem;
+  margin-top: 0.6rem;
+  flex-shrink: 0;
+  box-shadow: 0 0 10px rgba(147, 51, 234, 0.6);
+  animation: expBulletPulse 3s ease-in-out infinite;
 }
 
-.experience-summary {
+@keyframes expBulletPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px rgba(147, 51, 234, 0.6);
+  }
+  50% {
+    transform: scale(1.3);
+    box-shadow: 0 0 15px rgba(147, 51, 234, 0.9);
+  }
+}
+
+
+/* Experience Summary */
+.exp-summary {
   text-align: center;
+  margin-top: 5rem;
 }
 
-.summary-stats {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 2rem;
-  max-width: 800px;
-  margin: 0 auto;
+.exp-summary-header {
+  margin-bottom: 3rem;
 }
 
-.stat-item {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: white;
-  padding: 2rem;
-  border-radius: 15px;
-  transition: transform 0.3s ease;
-}
-
-.stat-item:hover {
-  transform: translateY(-5px);
-}
-
-.stat-item h3 {
+.exp-summary-title {
   font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #ffd700;
-  font-weight: 700;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-.stat-item p {
-  font-size: 1rem;
-  margin: 0;
+.exp-summary-icon {
+  font-size: 1.8rem;
+  color: #9333ea;
+}
+
+.exp-summary-desc {
+  color: #c4c4cc;
+  font-size: 1.2rem;
+  line-height: 1.7;
+  max-width: 700px;
+  margin: 1rem auto 0;
   opacity: 0.9;
 }
 
+/* Stats Grid */
+.exp-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.exp-stat-card {
+  background: linear-gradient(145deg, #1a1a1a 0%, #0a0a0a 100%);
+  border: 1px solid rgba(147, 51, 234, 0.2);
+  border-radius: 20px;
+  padding: 2rem;
+  transition: transform 0.4s ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.exp-stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.exp-stat-icon {
+  font-size: 3rem;
+  color: #9333ea;
+  margin-bottom: 0.5rem;
+}
+
+.exp-stat-content {
+  text-align: center;
+}
+
+.exp-stat-number {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #f8fafc 0%, #93c5fd 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.exp-stat-label {
+  font-size: 1rem;
+  color: #c4c4cc;
+  opacity: 0.9;
+}
+
+.exp-stat-decoration {
+  content: '';
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #9333ea, transparent);
+  transform: translateX(-50%);
+  border-radius: 2px;
+  box-shadow: 0 0 10px rgba(147, 51, 234, 0.5);
+  animation: expStatLineGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes expStatLineGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(147, 51, 234, 0.3);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(147, 51, 234, 0.8);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+  .exp-container {
+    padding: 0 1.5rem;
+  }
+  
+  .exp-title {
+    font-size: 3rem;
+  }
+}
+
 @media (max-width: 768px) {
-  .experience {
-    padding: 60px 0;
+  .exp-section {
+    padding: 80px 0;
   }
   
-  .experience-timeline::before {
-    left: 20px;
-  }
-  
-  .timeline-item {
-    width: 100%;
-    left: 0 !important;
-    padding-left: 3rem !important;
-    padding-right: 1rem !important;
-  }
-  
-  .timeline-item .timeline-marker {
-    left: 7px !important;
-    right: auto !important;
-  }
-  
-  .timeline-item .experience-card::before {
+  .exp-bg-elements {
     display: none;
   }
   
-  .company-period {
+  .exp-container {
+    padding: 0 1rem;
+  }
+  
+  .exp-title {
+    font-size: 2.5rem;
+  }
+  
+  .exp-subtitle {
+    font-size: 1.2rem;
+    padding: 0 1rem;
+  }
+  
+  .exp-timeline::before {
+    left: 30px;
+  }
+  
+  .exp-timeline-item {
+    width: 100%;
+    left: 0 !important;
+    padding-left: 4rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .exp-timeline-item .exp-timeline-marker {
+    left: 20px !important;
+    right: auto !important;
+  }
+  
+  .exp-timeline-item .exp-card::after {
+    display: none;
+  }
+  
+  .exp-card {
+    padding: 2rem;
+  }
+  
+  .exp-position {
+    font-size: 1.5rem;
+  }
+  
+  .exp-company-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  
+  .exp-meta-info {
     flex-direction: column;
     align-items: flex-start;
     gap: 0.5rem;
   }
   
-  .summary-stats {
+  .exp-stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
+    gap: 1.5rem;
   }
   
-  .stat-item {
+  .exp-stat-card {
     padding: 1.5rem;
   }
   
-  .stat-item h3 {
+  .exp-stat-number {
     font-size: 2rem;
+  }
+  
+  .exp-summary-title {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .exp-section {
+    padding: 60px 0;
+  }
+  
+  .exp-header {
+    margin-bottom: 4rem;
+  }
+  
+  .exp-rocket-icon {
+    font-size: 3rem;
+  }
+  
+  .exp-title {
+    font-size: 2rem;
+  }
+  
+  .exp-subtitle {
+    font-size: 1.1rem;
+    padding: 0 1.5rem;
+  }
+  
+  .exp-card {
+    padding: 1.5rem;
+    border-radius: 18px;
+  }
+  
+  .exp-position {
+    font-size: 1.3rem;
+  }
+  
+  .exp-company {
+    font-size: 1rem;
+  }
+  
+  .exp-description {
+    font-size: 0.9rem;
+  }
+  
+  .exp-tech-tag {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.75rem;
+  }
+  
+  .exp-achievement-item {
+    font-size: 0.9rem;
+  }
+  
+  .exp-stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .exp-stat-card {
+    padding: 1.2rem;
+  }
+  
+  .exp-stat-number {
+    font-size: 1.8rem;
+  }
+  
+  .exp-summary-title {
+    font-size: 1.8rem;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .exp-summary-desc {
+    font-size: 1rem;
   }
 }
