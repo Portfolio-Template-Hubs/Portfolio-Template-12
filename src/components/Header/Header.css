@@ -659,6 +659,10 @@
   .aurora-logo-title {
     font-size: 12px;
   }
+  
+  .aurora-header-border {
+    bottom: -15px;
+  }
 }
 
 @media (max-width: 480px) {
