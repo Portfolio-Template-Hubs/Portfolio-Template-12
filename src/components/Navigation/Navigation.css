@@ -97,54 +97,78 @@
   position: relative;
 }
 
-/* Mobile Responsive Navigation */
+/* ========================================
+   SIDEBAR NAVIGATION STYLES
+   ======================================== */
+
+/* Sidebar-specific navigation styles */
+.aurora-sidebar .aurora-nav {
+  flex: 1;
+  padding: 24px;
+}
+
+.aurora-sidebar .aurora-nav-list {
+  flex-direction: column;
+  gap: 8px;
+}
+
+.aurora-sidebar .aurora-nav-item {
+  width: 100%;
+}
+
+.aurora-sidebar .aurora-nav-link {
+  justify-content: flex-start;
+  padding: 16px 20px;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 500;
+  width: 100%;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.aurora-sidebar .aurora-nav-link:hover {
+  background: var(--aurora-nav-bg-hover);
+  transform: translateX(4px);
+}
+
+.aurora-sidebar .aurora-nav-link-active {
+  background: var(--aurora-nav-bg-hover);
+  color: var(--aurora-nav-text-active);
+}
+
+.aurora-sidebar .aurora-nav-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.aurora-sidebar .aurora-nav-text {
+  font-weight: 500;
+}
+
+.aurora-sidebar .aurora-nav-indicator {
+  display: none;
+}
+
+/* ========================================
+   MOBILE RESPONSIVE NAVIGATION
+   ======================================== */
+
 @media (max-width: 768px) {
+  /* Hide desktop navigation on mobile */
   .aurora-nav {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background: var(--aurora-header-bg-scrolled);
-    padding: 24px 0;
-    box-shadow: var(--aurora-header-shadow);
-    border-top: 1px solid var(--aurora-action-border);
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 5;
-  }
-  
-  .aurora-nav-open {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
-  
-  .aurora-nav-list {
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    max-width: 90%;
-    margin: 0 auto;
-  }
-  
-  .aurora-nav-item {
-    width: 100%;
-  }
-  
-  .aurora-nav-link {
-    justify-content: center;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 16px;
-    width: 100%;
-  }
-  
-  .aurora-nav-indicator {
     display: none;
   }
+  
+  /* Show sidebar navigation */
+  .aurora-sidebar .aurora-nav {
+    display: block;
+  }
 }
+
+/* ========================================
+   ACCESSIBILITY & ANIMATIONS
+   ======================================== */
 
 /* Accessibility focus styles */
 .aurora-nav-link:focus-visible {
@@ -159,5 +183,21 @@
   .aurora-nav-indicator,
   .aurora-nav-icon {
     transition: none;
+  }
+  
+  .aurora-sidebar .aurora-nav-link:hover {
+    transform: none;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .aurora-nav-link {
+    border: 1px solid transparent;
+  }
+  
+  .aurora-nav-link:hover,
+  .aurora-nav-link-active {
+    border-color: var(--aurora-nav-text-active);
   }
 }

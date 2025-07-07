@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Navigation.css';
 
-const Navigation = ({ isOpen }) => {
+const Navigation = ({ isOpen, onNavLinkClick }) => {
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
@@ -24,10 +24,9 @@ const Navigation = ({ isOpen }) => {
   }, []);
 
   const handleNavLinkClick = () => {
-    const mobileView = window.innerWidth <= 768;
-    if (mobileView && isOpen) {
-      // This will be handled by the parent component through the event propagation
-      // We're just indicating that a link was clicked in mobile view
+    // Call the parent callback if provided
+    if (onNavLinkClick) {
+      onNavLinkClick();
     }
   };
 
